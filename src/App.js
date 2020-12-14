@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollection } from 'react-firebase-hooks/firestore';
+import firebase from 'firebase'
+import Admin from './components/Admin'
+import Home from './components/Home'
+
+
+
 
 function App() {
+  const [user] = useAuthState(firebase.auth())
+  const [value, loading, error] = useCollection(firebase.firestore().collection('test'))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {user ? <Admin /> : <Home />}
     </div>
   );
 }

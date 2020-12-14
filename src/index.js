@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import './firebase/firebaseIndex'
+import App from './App.js';
 import reportWebVitals from './reportWebVitals';
+import AuthProvider from './provider/AuthProvider'
+import {BrowserRouter} from 'react-router-dom'
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
